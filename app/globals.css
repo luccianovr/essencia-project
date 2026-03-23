@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold:    #C9A84C; /* dorado principal — bordes, acentos, marcas */
+  --gold-lt: #F0D080; /* dorado claro — títulos, precios */
+  --dark:    #0a0a0a;
+  --mid:     #161616;
+  --text:    #F0D080;
+  --muted:   #8a8a6a; /* dorado apagado — texto secundario */
+  --card-bg: #111111;
+  --radius:  12px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #0a0a0a;
+  color: #F0D080;
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-9 py-3 border border-gold text-gold text-xs tracking-[0.2em] uppercase rounded-sm transition-all duration-200 hover:bg-gold hover:text-dark;
+  }
+
+  .filter-btn {
+    @apply px-5 py-2 border border-white/20 bg-transparent text-muted text-xs tracking-widest uppercase rounded-sm cursor-pointer transition-all duration-200 hover:bg-gold hover:text-dark hover:border-gold;
+  }
+
+  .filter-btn-active {
+    @apply bg-gold text-dark border-gold;
+  }
+}

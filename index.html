@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Essencia | Perfumería</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold:    #d4d4d4;
+      --gold-lt: #f0f0f0;
+      --dark:    #0a0a0a;
+      --mid:     #161616;
+      --text:    #f0f0f0;
+      --muted:   #787878;
+      --card-bg: #111111;
+      --radius:  12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212,212,212,0.12);
+    }
+    .nav-logo {
+      font-size: 1.6rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--text); }
+    nav ul {
+      list-style: none;
+      display: flex; gap: 2rem;
+    }
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(212,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero p {
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── Section header ── */
+    .section-header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+    .section-header p {
+      color: var(--muted);
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+    }
+    .divider {
+      width: 50px; height: 1px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    /* ── Filters ── */
+    .filters {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center;
+      padding: 0 2rem 2rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.3rem;
+      border: 1px solid rgba(212,212,212,0.2);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+    /* ── Product grid ── */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.8rem;
+      padding: 0 2.5rem 5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* ── Product card ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(212,212,212,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212,212,212,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .card-image {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem;
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      position: relative;
+    }
+    .badge {
+      position: absolute; top: 12px; right: 12px;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      font-family: sans-serif;
+    }
+    .badge-new   { background: var(--gold); color: var(--dark); }
+    .badge-low   { background: #8b2222; color: #ffd0d0; }
+    .badge-out   { background: #3a3a3a; color: #999; }
+
+    .card-body { padding: 1.2rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .card-brand {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+      font-family: sans-serif;
+    }
+    .card-name {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.4rem 1.2rem;
+      border-top: 1px solid rgba(212,212,212,0.07);
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .card-price {
+      font-size: 1.3rem;
+      color: var(--gold-lt);
+    }
+    .stock-info {
+      font-size: 0.72rem;
+      font-family: sans-serif;
+      letter-spacing: 0.06em;
+    }
+    .in-stock  { color: #6fcf97; }
+    .low-stock { color: #f2994a; }
+    .no-stock  { color: #888; }
+
+    .card-ml {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      margin-top: 0.15rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      border-top: 1px solid rgba(212,212,212,0.1);
+      border-bottom: 1px solid rgba(212,212,212,0.1);
+      margin-bottom: 3rem;
+    }
+    .stat {
+      flex: 1; min-width: 160px;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-right: 1px solid rgba(212,212,212,0.07);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 2.2rem;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: sans-serif;
+      margin-top: 0.3rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid rgba(212,212,212,0.08);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: sans-serif;
+      letter-spacing: 0.05em;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .products { padding: 0 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-logo">Ess<span>encia</span></div>
+  <ul>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-eyebrow">Colección 2026</p>
+  <h1>El arte de la <em>fragancia</em><br>al alcance tuyo</h1>
+  <p>Descubre nuestra selección de perfumes de autor y alta gama. Stock actualizado.</p>
+  <a href="#catalogo" class="btn">Ver stock disponible</a>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">48</div>
+    <div class="stat-label">Fragancias</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Marcas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">32</div>
+    <div class="stat-label">En stock hoy</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24h</div>
+    <div class="stat-label">Despacho</div>
+  </div>
+</div>
+
+<!-- Catalog -->
+<section id="catalogo">
+  <div class="section-header">
+    <h2>Catálogo de productos</h2>
+    <p>Stock en tiempo real</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards(this, 'all')">Todos</button>
+    <button class="filter-btn" onclick="filterCards(this, 'hombre')">Hombre</button>
+    <button class="filter-btn" onclick="filterCards(this, 'mujer')">Mujer</button>
+    <button class="filter-btn" onclick="filterCards(this, 'unisex')">Unisex</button>
+    <button class="filter-btn" onclick="filterCards(this, 'disponible')">En stock</button>
+  </div>
+
+  <!-- Grid -->
+  <div class="products" id="productGrid">
+
+    <div class="card" data-cat="hombre disponible">
+      <div class="card-image">
+        🧴
+        <span class="badge badge-new">Nuevo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Dior</div>
+        <div class="card-name">Sauvage</div>
+        <div class="card-desc">Amaderado especiado. Bergamota de Calabria, nuez moscada, patchouli y abedul.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$15.000</div>
+          <div class="card-ml">25 ml · EDP</div>
+        </div>
+        <div class="stock-info in-stock">● 3 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="mujer disponible">
+      <div class="card-image">
+        🌸
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Chanel</div>
+        <div class="card-name">Bleu</div>
+        <div class="card-desc">edit description</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$15.000</div>
+          <div class="card-ml">25 ml · EDP</div>
+        </div>
+        <div class="stock-info in-stock">● 1 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="unisex disponible">
+      <div class="card-image">
+        🕯️
+        <span class="badge badge-low">Pocas unidades</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Le Labo</div>
+        <div class="card-name">Santal 33</div>
+        <div class="card-desc">Icónico unisex. Madera de cedro, sándalo, cuero y cardamomo.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$124.000</div>
+          <div class="card-ml">50 ml · EDP</div>
+        </div>
+        <div class="stock-info low-stock">● 3 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="hombre disponible">
+      <div class="card-image">
+        🌿
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Acqua di Parma</div>
+        <div class="card-name">Colonia Essenza</div>
+        <div class="card-desc">Cítrico aromático. Limón, naranja amarga, lavanda y vetiver.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$98.000</div>
+          <div class="card-ml">100 ml · EDC</div>
+        </div>
+        <div class="stock-info in-stock">● 6 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="mujer">
+      <div class="card-image">
+        🌹
+        <span class="badge badge-out">Sin stock</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">YSL</div>
+        <div class="card-name">Libre Intense</div>
+        <div class="card-desc">Oriental floral. Lavanda marroquí, flor de naranjo, madera de oud.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$82.000</div>
+          <div class="card-ml">90 ml · EDP</div>
+        </div>
+        <div class="stock-info no-stock">✕ Sin stock</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="unisex disponible">
+      <div class="card-image">
+        🌊
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Maison Margiela</div>
+        <div class="card-name">Replica · Beach Walk</div>
+        <div class="card-desc">Acuático cremoso. Coco, neroli, almizcle blanco. El verano en una botella.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$110.000</div>
+          <div class="card-ml">100 ml · EDT</div>
+        </div>
+        <div class="stock-info in-stock">● 5 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="hombre disponible">
+      <div class="card-image">
+        🔥
+        <span class="badge badge-new">Nuevo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tom Ford</div>
+        <div class="card-name">Tobacco Vanille</div>
+        <div class="card-desc">Oriental especiado. Tabaco, vainilla, bálsamo del Perú y especias secas.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$145.000</div>
+          <div class="card-ml">50 ml · EDP</div>
+        </div>
+        <div class="stock-info in-stock">● 4 disponibles</div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="mujer disponible">
+      <div class="card-image">
+        🌺
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Valentino</div>
+        <div class="card-name">Voce Viva Intensa</div>
+        <div class="card-desc">Floral gourmand. Bergamota, gardenia, almizcle blanco y vainilla.</div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <div class="card-price">$71.000</div>
+          <div class="card-ml">50 ml · EDP</div>
+        </div>
+        <div class="stock-info in-stock">● 11 disponibles</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contacto">
+  <strong>Essencia Perfumería</strong> · Buenos Aires, Argentina<br>
+  <span style="margin-top:0.4rem;display:block;">Stock actualizado diariamente · Envíos a todo el país</span>
+</footer>
+
+<script>
+  function filterCards(btn, cat) {
+    // Toggle active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const cats = card.dataset.cat || '';
+      if (cat === 'all' || cats.includes(cat)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
