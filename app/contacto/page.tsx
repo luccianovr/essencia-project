@@ -23,7 +23,7 @@ export default function ContactoPage() {
         </h1>
 
         <div className="w-full max-w-sm bg-card-bg border border-white/[0.1] rounded-sm p-8 space-y-6">
-          <div className="space-y-1">
+          {/* <div className="space-y-1">
             <p className="text-gold text-xs tracking-[0.3em] uppercase">Teléfono</p>
             <a
               href="tel:+56995086703"
@@ -31,17 +31,17 @@ export default function ContactoPage() {
             >
               +56 9 9508 6703
             </a>
-          </div>
+          </div> */}
 
-          <div className="border-t border-white/[0.08]" />
+          {/* <div className="border-t border-white/[0.08]" /> */}
 
           <div className="space-y-1">
             <p className="text-gold text-xs tracking-[0.3em] uppercase">Correo</p>
             <a
-              href="mailto:luciano.villagran2017@umce.cl"
+              href="mailto:essencia.decaant@gmail.com"
               className="text-gold-lt text-sm font-sans tracking-wide hover:text-gold transition-colors duration-200 break-all"
             >
-              luciano.villagran2017@umce.cl
+              essencia.decaant@gmail.com
             </a>
           </div>
         </div>
