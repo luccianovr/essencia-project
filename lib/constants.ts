@@ -285,6 +285,34 @@ export const PRODUCTS: Product[] = [
     stockStatus: "in-stock",
     stockCount: 11,
   },
+  {
+    id: "idole-lancome",
+    brand: "Lancôme",
+    name: "Idole",
+    description:
+      "Fragancia moderna de la familia olfativa Chipre Floral. Se caracteriza por ser un aroma limpio, fresco y luminoso, diseñado para mujeres empoderadas y decididas. ",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/idole-lancome.png",
+    categories: ["mujer"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+  },
+  {
+    id: "vs-velvet-petals",
+    brand: "Victoria Secret",
+    name: "VS Velvet Petals",
+    description:
+      "Aroma dulce, cálido y floral. Se destaca por su combinación de notas de glaseado de almendras y flores exuberantes, dejando una sensación cremosa, romántica y envolvente en la piel.",
+    price: "$6.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/vs-velvet-petals.png",
+    categories: ["mujer"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+  },
 ];
 
 const stockCount = PRODUCTS.reduce(
