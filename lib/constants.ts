@@ -313,6 +313,20 @@ export const PRODUCTS: Product[] = [
     stockStatus: "in-stock",
     stockCount: 15,
   },
+  {
+    id: "212-rose-carolina-herrera",
+    brand: "Carolina Herrera",
+    name: "212 Rose",
+    description:
+      "Floral Frutal. Su aroma es efervescente, sofisticado y fresco, con un toque dulce y jugoso muy característico.",
+    price: "$6.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/212-rose-carolina-herrera.png",
+    categories: ["mujer"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+  },
 ];
 
 const stockCount = PRODUCTS.reduce(
