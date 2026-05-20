@@ -319,7 +319,7 @@ export const PRODUCTS: Product[] = [
     name: "212 Rose",
     description:
       "Floral Frutal. Su aroma es efervescente, sofisticado y fresco, con un toque dulce y jugoso muy característico.",
-    price: "$6.000",
+    price: "$15.000",
     volume: "25",
     concentration: "EDP",
     image: "/images/212-rose-carolina-herrera.png",
