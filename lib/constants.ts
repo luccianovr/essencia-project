@@ -14,7 +14,6 @@ export const PRODUCTS: Product[] = [
     categories: ["hombre"],
     stockStatus: "in-stock",
     stockCount: 3,
-    badge: "new",
   },
   {
     id: "chanel-bleu",
@@ -87,6 +86,7 @@ export const PRODUCTS: Product[] = [
     categories: ["mujer"],
     stockStatus: "in-stock",
     stockCount: 5,
+    badge: "low",
   },
   {
     id: "tommy-hilfiger-impact",
@@ -101,7 +101,6 @@ export const PRODUCTS: Product[] = [
     categories: ["hombre"],
     stockStatus: "in-stock",
     stockCount: 4,
-    badge: "new",
   },
   {
     id: "valentino-born-in-roma",
@@ -298,6 +297,7 @@ export const PRODUCTS: Product[] = [
     categories: ["mujer"],
     stockStatus: "in-stock",
     stockCount: 15,
+    badge: "new",
   },
   {
     id: "vs-velvet-petals",
@@ -312,6 +312,7 @@ export const PRODUCTS: Product[] = [
     categories: ["mujer"],
     stockStatus: "in-stock",
     stockCount: 15,
+    badge: "new",
   },
   {
     id: "212-rose-carolina-herrera",
@@ -326,6 +327,67 @@ export const PRODUCTS: Product[] = [
     categories: ["mujer"],
     stockStatus: "in-stock",
     stockCount: 15,
+    badge: "new",
+  },
+  {
+    id: "moschino-toy-2-bubble-gum",
+    brand: "Moschino",
+    name: "Toy 2 Bubble Gum",
+    description:
+      "Una fragancia dulce y jugosa que combina notas de frutas frescas con un fondo amaderado.",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDT",
+    image: "/images/moschino-toy-2-bubble-gum.png",
+    categories: ["mujer"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+    badge: "new",
+  },
+  {
+    id: "212-mujer-nyc-carolina-herrera",
+    brand: "Carolina Herrera",
+    name: "212 Mujer NYC",
+    description:
+      "Una fragancia fresca y energizante que combina notas cítricas con un fondo amaderado.",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDT",
+    image: "/images/212-mujer-nyc-carolina-herrera.png",
+    categories: ["mujer"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+    badge: "new",
+  },
+  {
+    id: "yves-saint-laurent-hombre",
+    brand: "Yves Saint Laurent",
+    name: "Hombre",
+    description:
+      "Una fragancia masculina y moderna que combina notas cítricas con un fondo amaderado.",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/yves-saint-laurent-hombre.png",
+    categories: ["hombre"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+    badge: "new",
+  },
+  {
+    id: "scandal-pour-homme-jean-paul-gaultier",
+    brand: "Jean Paul Gaultier",
+    name: "Scandal Pour Homme",
+    description:
+      "Las Notas de Salida son mandarina y esclarea; las Notas de Corazón son caramelo y haba tonka; la Nota de Fondo es vetiver.",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDT",
+    image: "/images/scandal-pour-homme-jean-paul-gaultier.png",
+    categories: ["hombre"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+    badge: "new",
   },
 ];
 
