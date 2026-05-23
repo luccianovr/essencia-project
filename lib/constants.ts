@@ -389,6 +389,21 @@ export const PRODUCTS: Product[] = [
     stockCount: 15,
     badge: "new",
   },
+  {
+    id: "eros-versace",
+    brand: "Versace",
+    name: "Eros",
+    description:
+      "Combina un frescor inicial vibrante con una base cálida y cremosa, destacando por su alta concentración y duración excepcional en la piel",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/eros-versace.png",
+    categories: ["hombre"],
+    stockStatus: "in-stock",
+    stockCount: 15,
+    badge: "new",
+  },
 ];
 
 const stockCount = PRODUCTS.reduce(
@@ -398,7 +413,7 @@ const stockCount = PRODUCTS.reduce(
 
 export const STATS: Stat[] = [
   { value: `${PRODUCTS.length}`, label: "Fragancias" },
-  { value: "14", label: "Marcas" },
+  /* { value: "14", label: "Marcas" }, */
   { value: `${stockCount}`, label: "En stock hoy" },
   { value: "24h", label: "Despacho" },
 ];
