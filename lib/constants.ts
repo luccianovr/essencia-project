@@ -558,7 +558,7 @@ export const PRODUCTS: Product[] = [
     name: "Aventus",
     description:
       "Icónico perfume de nicho para hombres lanzado en 2010 por la casa Creed. Conocido por su aroma afrutado y amaderado, destaca por sus notas de piña, bergamota, abedul y almizcle.",
-    price: "$15.000",
+    price: "$20.000",
     volume: "25",
     concentration: "EDP",
     image: "/images/creed-aventus.png",
