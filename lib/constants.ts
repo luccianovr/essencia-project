@@ -657,6 +657,21 @@ export const PRODUCTS: Product[] = [
     stockCount: 11,
     badge: "new",
   },
+  {
+    id: "polo-sport-ralph-lauren",
+    brand: "Ralph Lauren",
+    name: "Polo Sport",
+    description:
+      "Es un clásico atemporal de la perfumería masculina, famoso por su energía y frescura. Lanzado en 1994 y creado por Harry Fremont, pertenece a la familia olfativa Aromática Verde. Es la fragancia perfecta para el hombre activo, ideal para el uso diario o el gimnasio gracias a sus vibrantes notas.",
+    price: "$15.000",
+    volume: "25",
+    concentration: "EDP",
+    image: "/images/polo-sport.png",
+    categories: ["hombre"],
+    stockStatus: "in-stock",
+    stockCount: 11,
+    badge: "new",
+  },
 ];
 
 const stockCount = PRODUCTS.reduce(
