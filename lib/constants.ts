@@ -523,21 +523,6 @@ export const PRODUCTS: Product[] = [
     badge: "new",
   },
   {
-    id: "armani-stronger-with-you",
-    brand: "Armani",
-    name: "Stronger With You",
-    description:
-      "Se destacan por su irresistible acorde de castaña, vainilla y un toque aromático, lo que los convierte en perfumes ideales para climas fríos o salidas nocturnas",
-    price: "$15.000",
-    volume: "25",
-    concentration: "EDT",
-    image: "/images/armani-stronger-with-you.png",
-    categories: ["hombre"],
-    stockStatus: "in-stock",
-    stockCount: 11,
-    badge: "new",
-  },
-  {
     id: "invictus-platinum-paco-rabanne",
     brand: "Paco Rabanne",
     name: "Invictus Platinum",
