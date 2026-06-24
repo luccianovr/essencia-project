@@ -22,9 +22,9 @@ export function ProductFields({ product, disableId = false }: ProductFieldsProps
             type="text"
             defaultValue={product?.id ?? ""}
             required
-            disabled={disableId}
+            readOnly={disableId}
             placeholder="dior-sauvage"
-            className={inputClass}
+            className={inputClass + (disableId ? " opacity-50 cursor-not-allowed" : "")}
           />
         </div>
         <div>
