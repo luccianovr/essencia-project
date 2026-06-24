@@ -1,4 +1,4 @@
-import type { Product, Stat } from "@/types";
+import type { Product } from "@/types";
 
 export const PRODUCTS: Product[] = [
   {
@@ -657,16 +657,4 @@ export const PRODUCTS: Product[] = [
     stockCount: 11,
     badge: "new",
   },
-];
-
-const stockCount = PRODUCTS.reduce(
-  (total, product) => total + product.stockCount,
-  0,
-);
-
-export const STATS: Stat[] = [
-  { value: `${PRODUCTS.length}`, label: "Fragancias" },
-  /* { value: "14", label: "Marcas" }, */
-  { value: `${stockCount}`, label: "En stock hoy" },
-  { value: "24h", label: "Despacho" },
 ];
